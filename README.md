@@ -15,10 +15,6 @@ A modern, customizable browser start page with dark/light themes, weather integr
 - ⚡ **Fast & Lightweight** - Single HTML file, no build process required
 - 🎯 **Customizable** - Easy configuration through JavaScript variables
 
-## Demo
-
-Check out the [live demo](startpage-demo.mov) or view the included `startpage-demo.html` file.
-
 ## Quick Start
 
 1. **Download** the `startpage.html` file
