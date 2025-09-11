@@ -2,7 +2,7 @@
 
 A modern, customizable browser start page with dark/light themes, weather integration, and organized quick links.
 
-![Start Page Screenshot](screenshot.png)
+![Start Page Screenshot](startpage.png)
 
 ## Features
 
@@ -17,7 +17,7 @@ A modern, customizable browser start page with dark/light themes, weather integr
 
 ## Demo
 
-Check out the [live demo](https://your-username.github.io/startpage) or view the included `startpage-demo.html` file.
+Check out the [live demo](startpage-demo.mov) or view the included `startpage-demo.html` file.
 
 ## Quick Start
 
