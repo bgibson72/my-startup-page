@@ -106,16 +106,6 @@ const linkCategories = ['Work', 'Social', 'Entertainment', 'Tools'];
 - **Equal-width columns** - Balanced layout
 - **Hover effects** - Visual feedback on interaction
 
-## File Structure
-
-```
-startpage/
-├── startpage.html          # Main start page
-├── startpage-demo.html     # Demo version with sample data
-├── README.md              # Documentation
-└── screenshot.png         # Preview image
-```
-
 ## Browser Compatibility
 
 - ✅ Chrome 88+
