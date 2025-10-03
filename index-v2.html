@@ -111,27 +111,35 @@
         }
 
         body {
-            background-image: url('peakpx.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: hsl(var(--foreground));
-            font-feature-settings: "rlig" 1, "calt" 1;
-            min-height: 100vh;
-        }
-
-        /* Add semi-transparent overlay for better text readability */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: -1;
-        }
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+}
+     /* Background image with semi-transparent overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('peakpx.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/* Overlay for better text readability */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
 
         .light body::before {
             background-color: rgba(255, 255, 255, 0.3);
@@ -141,13 +149,36 @@
         .weather-widget,
         .calendar-widget,
         .link-category {
-            background-color: hsl(var(--card) / 0.85);
+            background-color: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(10px);
-            border: 1px solid hsl(var(--border) / 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 1rem;
             padding: 1.5rem;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            color: white;
         }
+
+        /* Force white text in widgets regardless of theme */
+        .weather-widget *,
+        .calendar-widget *,
+        .link-category *,
+        .link-category a {
+            color: white !important;
+        }
+
+.light .weather-widget,
+.light .calendar-widget,
+.light .link-category {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.5)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
 
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
@@ -158,62 +189,54 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .weather-icon {
-            font-size: 4rem;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            min-height: 32px;
-            position: relative;
-        }
-
-        .calendar-day.today {
-            background-color: hsl(var(--primary) / 0.3);
-            border: 2px solid hsl(var(--primary));
-            font-weight: bold;
-        }
-
-        .calendar-day.other-month {
-            opacity: 0.3;
-        }
-
-        .calendar-nav-btn {
-            background: none;
-            border: none;
-            color: hsl(var(--foreground));
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-
-        .calendar-nav-btn:hover {
-            background-color: hsl(var(--secondary));
-        }
-
+        
         /* Search bar styling */
-        #searchBar {
-            background-color: hsl(var(--card) / 0.85);
-            backdrop-filter: blur(10px);
-            border: 2px solid hsl(var(--border) / 0.5);
-            color: hsl(var(--foreground));
-            padding: 1rem 1.5rem;
-            font-size: 1.125rem;
-            border-radius: 9999px;
-            outline: none;
-            transition: all 0.2s;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
+#searchBar {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    color: hsl(var(--foreground));
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
 
-        #searchBar:focus {
-            border-color: hsl(var(--primary));
-            box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
-        }
+.light #searchBar {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.5)
+    );
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
 
-        #searchBar::placeholder {
-            color: hsl(var(--muted-foreground));
-        }
+#searchBar:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 
+        0 0 0 3px hsl(var(--primary) / 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+#searchBar::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#searchBar {
+    color: white !important;
+}
 
         /* Link category styling */
         .link-category h3 {
@@ -255,12 +278,12 @@
             font-family: 'JetBrainsMono Nerd Font', 'Inter', 'Segoe UI', 'Arial', sans-serif !important;
         }
 
-        /* Large time display */
+        /* Large time display - always white */
         #timeDisplay {
             font-size: 5rem;
             font-weight: 300;
-            color: hsl(var(--foreground));
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 768px) {
@@ -268,20 +291,24 @@
                 font-size: 3rem;
             }
         }
+
+        /* Theme toggle styling - ensure visibility */
+        #themeToggle {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        #themeToggle:hover {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
+        
     </style>
 </head>
 <body class="dark min-h-screen p-4 font-sans">
-    <!--
-      To customize your start page:
-      1. Edit the weatherLocation and weatherApiKey variables below.
-      2. Edit the quickLinks array below to add/remove your links and categories.
-      3. Assign icons to categories in the categoryIcons object.
-    -->
     <script>
       // --- USER CONFIGURABLE SECTION ---
       const weatherLocation = "40.696,-89.611"; // <-- City or lat,lon
       const weatherApiKey = "ab20a764cbdb94a7174eb562c5e2c731"; // <-- OpenWeather API key
-
       // Category icons (using Ionicons)
       const categoryIcons = {
         'Google': 'logo-google',
@@ -289,7 +316,6 @@
         'Media': 'play-circle-outline',
         'Social': 'people-outline'
       };
-
       // Quick links with categories
       const quickLinks = [
         { name: 'Gmail', url: 'https://gmail.com', category: 'Google' },
@@ -307,7 +333,6 @@
         { name: 'Twitter', url: 'https://twitter.com', category: 'Social' },
         { name: 'LinkedIn', url: 'https://linkedin.com', category: 'Social' }
       ];
-
       // List your categories here (order matters)
       const linkCategories = ['Google', 'Development', 'Media', 'Social'];
       // --- END USER CONFIGURABLE SECTION ---
@@ -334,10 +359,23 @@
             <ion-icon id="themeIcon" name="sunny-outline" class="text-2xl text-primary"></ion-icon>
         </button>
 
-        <!-- Time Display - Large and Centered at Top -->
-        <div class="text-center mb-8 mt-12 fade-in">
-            <div id="timeDisplay" class="mb-6"></div>
+        <!-- Combined Header Widget: Time, Weather, Date -->
+<div class="max-w-4xl mx-auto mb-8 mt-12 fade-in">
+    <div class="flex items-center justify-center gap-12 flex-wrap">
+        <!-- Weather & Date stacked -->
+        <div class="text-center">
+            <div id="weatherDisplay" class="mb-4">
+                <!-- Weather content will be rendered by JS -->
+            </div>
+            <div id="dateDisplay" class="text-lg font-medium"></div>
         </div>
+        
+        <!-- Time (larger, centered) -->
+        <div class="text-center">
+            <div id="timeDisplay" class="text-8xl font-light" style="text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);"></div>
+        </div>
+    </div>
+</div>
 
         <!-- DuckDuckGo Search Bar -->
         <div class="max-w-2xl mx-auto mb-12 fade-in">
@@ -354,60 +392,17 @@
             </form>
         </div>
 
-        <!-- Main Content Grid: Weather/Calendar on Left, Links on Right -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <!-- Left Column: Weather and Calendar -->
-            <div class="lg:col-span-1 space-y-6">
-                <!-- Weather Widget -->
-                <div class="weather-widget fade-in">
-                    <div id="weatherDisplay" class="text-center">
-                        <!-- Weather content will be rendered by JS -->
-                    </div>
-                </div>
-
-                <!-- Calendar Widget -->
-                <div class="calendar-widget fade-in">
-                    <div class="flex items-center justify-between mb-4">
-                        <button class="calendar-nav-btn" onclick="previousMonth()">
-                            <ion-icon name="chevron-back-outline"></ion-icon>
-                        </button>
-                        <h3 id="calendarTitle" class="text-lg font-medium text-center flex-1"></h3>
-                        <button class="calendar-nav-btn" onclick="nextMonth()">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </button>
-                    </div>
-                    <div class="grid grid-cols-7 gap-1 mb-2">
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">S</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">M</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">T</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">W</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">T</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">F</div>
-                        <div class="text-center text-xs font-medium text-muted-foreground py-1">S</div>
-                    </div>
-                    <div id="calendarGrid" class="grid grid-cols-7 gap-1">
-                        <!-- Calendar days will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Quick Links by Category -->
-            <div class="lg:col-span-3">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="quickLinksContainer">
-                    <!-- Link categories will be rendered here -->
-                </div>
+        <!-- Quick Links -->
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="quickLinksContainer">
+                <!-- Link categories will be rendered here -->
             </div>
         </div>
     </div>
-
     <script>
-        let currentDate = new Date();
-        let currentMonth = currentDate.getMonth();
-        let currentYear = currentDate.getFullYear();
-
         document.addEventListener('DOMContentLoaded', function() {
             updateTime();
-            renderCalendar();
+            updateDate();
             renderQuickLinks();
             loadWeather();
             initThemeToggle();
@@ -416,53 +411,19 @@
 
         function updateTime() {
             const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
+            let hours = now.getHours();
             const minutes = now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('timeDisplay').textContent = `${hours}:${minutes}`;
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 should be 12
+            document.getElementById('timeDisplay').textContent = `${hours}:${minutes} ${ampm}`;
         }
 
-        function renderCalendar() {
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"];
-            document.getElementById('calendarTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            const firstDay = new Date(currentYear, currentMonth, 1);
-            const startDate = new Date(firstDay);
-            startDate.setDate(startDate.getDate() - firstDay.getDay());
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.innerHTML = '';
-            for (let i = 0; i < 42; i++) {
-                const date = new Date(startDate);
-                date.setDate(startDate.getDate() + i);
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day flex items-center justify-center text-sm rounded hover:bg-secondary/50 transition-colors cursor-pointer';
-                dayElement.textContent = date.getDate();
-                if (date.getMonth() !== currentMonth) {
-                    dayElement.classList.add('other-month');
-                }
-                const today = new Date();
-                if (date.toDateString() === today.toDateString()) {
-                    dayElement.classList.add('today');
-                }
-                calendarGrid.appendChild(dayElement);
-            }
-        }
-
-        function previousMonth() {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            renderCalendar();
-        }
-
-        function nextMonth() {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            renderCalendar();
+        function updateDate() {
+            const now = new Date();
+            const options = { weekday: 'short', month: 'short', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.getElementById('dateDisplay').textContent = dateStr;
         }
 
         function renderQuickLinks() {
@@ -477,7 +438,6 @@
                 if (!grouped[cat]) grouped[cat] = [];
                 grouped[cat].push(link);
             });
-
             // Render each category
             linkCategories.forEach(category => {
                 if (!grouped[category] || grouped[category].length === 0) return;
@@ -510,99 +470,77 @@
         }
 
         async function loadWeather() {
-            const weatherDisplay = document.getElementById('weatherDisplay');
-            if (!weatherDisplay) return;
-            
-            if (!weatherLocation) {
-                weatherDisplay.innerHTML = `
-                    <div class="weather-icon mb-3">
-                        <ion-icon name="partly-sunny-outline" class="text-primary"></ion-icon>
-                    </div>
-                    <div class="text-3xl font-bold mb-2">--°</div>
-                    <div class="text-sm text-muted-foreground">Configure location</div>
-                `;
-                return;
-            }
-            
-            try {
-                let url;
-                // Detect lat,lon input
-                if (/^-?\d{1,3}\.\d+\s*,\s*-?\d{1,3}\.\d+$/.test(weatherLocation.trim())) {
-                    const [lat, lon] = weatherLocation.split(',').map(s => s.trim());
-                    url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`;
-                } else {
-                    url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(weatherLocation)}&appid=${weatherApiKey}&units=imperial`;
-                }
-                
-                if (weatherApiKey) {
-                    const response = await fetch(url);
-                    const weatherData = await response.json();
-                    
-                    if (response.ok) {
-                        const iconMap = {
-                            '01d': 'sunny-outline', '01n': 'moon-outline',
-                            '02d': 'partly-sunny-outline', '02n': 'cloudy-night-outline',
-                            '03d': 'cloud-outline', '03n': 'cloud-outline',
-                            '04d': 'cloudy-outline', '04n': 'cloudy-outline',
-                            '09d': 'rainy-outline', '09n': 'rainy-outline',
-                            '10d': 'rainy-outline', '10n': 'rainy-outline',
-                            '11d': 'thunderstorm-outline', '11n': 'thunderstorm-outline',
-                            '13d': 'snow-outline', '13n': 'snow-outline',
-                            '50d': 'partly-sunny-outline', '50n': 'partly-sunny-outline'
-                        };
-                        const icon = iconMap[weatherData.weather[0].icon] || 'partly-sunny-outline';
-                        const temp = Math.round(weatherData.main.temp);
-                        const high = Math.round(weatherData.main.temp_max);
-                        const low = Math.round(weatherData.main.temp_min);
-                        const conditions = weatherData.weather[0].description;
-                        
-                        weatherDisplay.innerHTML = `
-                            <div class="weather-icon mb-3">
-                                <ion-icon name="${icon}" class="text-primary"></ion-icon>
-                            </div>
-                            <div class="text-4xl font-bold mb-2">${temp}°F</div>
-                            <div class="text-sm text-muted-foreground mb-1">H: ${high}° / L: ${low}°</div>
-                            <div class="text-sm text-muted-foreground capitalize">${conditions}</div>
-                        `;
-                    } else {
-                        weatherDisplay.innerHTML = `
-                            <div class="weather-icon mb-3">
-                                <ion-icon name="alert-circle-outline" class="text-destructive"></ion-icon>
-                            </div>
-                            <div class="text-3xl font-bold mb-2">--°</div>
-                            <div class="text-sm text-muted-foreground">Weather unavailable</div>
-                        `;
-                    }
-                } else {
-                    weatherDisplay.innerHTML = `
-                        <div class="weather-icon mb-3">
-                            <ion-icon name="partly-sunny-outline" class="text-primary"></ion-icon>
-                        </div>
-                        <div class="text-4xl font-bold mb-2">72°F</div>
-                        <div class="text-sm text-muted-foreground mb-1">H: 75° / L: 68°</div>
-                        <div class="text-sm text-muted-foreground">Sunny</div>
-                    `;
-                }
-            } catch (error) {
-                weatherDisplay.innerHTML = `
-                    <div class="weather-icon mb-3">
-                        <ion-icon name="alert-circle-outline" class="text-destructive"></ion-icon>
-                    </div>
-                    <div class="text-3xl font-bold mb-2">--°</div>
-                    <div class="text-sm text-muted-foreground">Weather unavailable</div>
-                `;
-            }
+    const weatherDisplay = document.getElementById('weatherDisplay');
+    if (!weatherDisplay) return;
+    
+    if (!weatherLocation) {
+        weatherDisplay.innerHTML = `
+            <ion-icon name="partly-sunny-outline" class="text-7xl text-primary mb-2"></ion-icon>
+            <div class="text-xl font-medium">--° / --°</div>
+        `;
+        return;
+    }
+    
+    try {
+        let url;
+        // Detect lat,lon input
+        if (/^-?\d{1,3}\.\d+\s*,\s*-?\d{1,3}\.\d+$/.test(weatherLocation.trim())) {
+            const [lat, lon] = weatherLocation.split(',').map(s => s.trim());
+            url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`;
+        } else {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(weatherLocation)}&appid=${weatherApiKey}&units=imperial`;
         }
-
+        
+        if (weatherApiKey) {
+            const response = await fetch(url);
+            const weatherData = await response.json();
+            
+            if (response.ok) {
+                const iconMap = {
+                    '01d': 'sunny-outline', '01n': 'moon-outline',
+                    '02d': 'partly-sunny-outline', '02n': 'cloudy-night-outline',
+                    '03d': 'cloud-outline', '03n': 'cloud-outline',
+                    '04d': 'cloudy-outline', '04n': 'cloudy-outline',
+                    '09d': 'rainy-outline', '09n': 'rainy-outline',
+                    '10d': 'rainy-outline', '10n': 'rainy-outline',
+                    '11d': 'thunderstorm-outline', '11n': 'thunderstorm-outline',
+                    '13d': 'snow-outline', '13n': 'snow-outline',
+                    '50d': 'partly-sunny-outline', '50n': 'partly-sunny-outline'
+                };
+                const icon = iconMap[weatherData.weather[0].icon] || 'partly-sunny-outline';
+                const high = Math.round(weatherData.main.temp_max);
+                const low = Math.round(weatherData.main.temp_min);
+                
+                weatherDisplay.innerHTML = `
+                    <ion-icon name="${icon}" class="text-7xl text-primary mb-2"></ion-icon>
+                    <div class="text-xl font-medium">${high}° / ${low}°</div>
+                `;
+            } else {
+                weatherDisplay.innerHTML = `
+                    <ion-icon name="alert-circle-outline" class="text-7xl text-destructive mb-2"></ion-icon>
+                    <div class="text-xl font-medium">--° / --°</div>
+                `;
+            }
+        } else {
+            weatherDisplay.innerHTML = `
+                <ion-icon name="partly-sunny-outline" class="text-7xl text-primary mb-2"></ion-icon>
+                <div class="text-xl font-medium">75° / 68°</div>
+            `;
+        }
+    } catch (error) {
+        weatherDisplay.innerHTML = `
+            <ion-icon name="alert-circle-outline" class="text-7xl text-destructive mb-2"></ion-icon>
+            <div class="text-xl font-medium">--° / --°</div>
+        `;
+    }
+}
         function initThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
-
             function updateThemeIcon() {
                 const isDark = document.documentElement.classList.contains('dark');
                 themeIcon.name = isDark ? 'sunny-outline' : 'moon-outline';
             }
-
             function toggleTheme() {
                 const isDark = document.documentElement.classList.contains('dark');
                 if (isDark) {
@@ -620,7 +558,6 @@
                 }
                 updateThemeIcon();
             }
-
             updateThemeIcon();
             themeToggle.addEventListener('click', toggleTheme);
         }
