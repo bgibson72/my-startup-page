@@ -71,6 +71,29 @@ Organize links into categories that display as separate columns:
 const linkCategories = ['Work', 'Social', 'Entertainment', 'Tools'];
 ```
 
+### Fonts
+
+Select the font of your choice and edit the section starting at line 419:
+
+```
+ @font-face {
+                font-family: "JetBrainsMono Nerd Font";
+                src:
+                    local("JetBrainsMono Nerd Font"),
+                    local("JetBrainsMonoNerdFont"),
+                    url("JetBrainsMonoNerdFont-Regular.ttf") format("truetype"); /* Optional: place .ttf in same folder */
+                font-weight: normal;
+                font-style: normal;
+                font-display: swap;
+            }
+            body,
+            .font-sans,
+            button {
+                font-family:
+                    "JetBrainsMono Nerd Font", "Inter", "Segoe UI", "Arial",
+                    sans-serif !important;
+```
+
 ## Browser Setup
 
 ### Chrome/Edge
