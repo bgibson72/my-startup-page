@@ -49,6 +49,9 @@ const quickLinks = [
 const linkCategories = ['Google', 'Development', 'Media', 'Social'];
 ```
 
+☝️ Make sure to put the ttf/otf file in the same directory as the index.html file of the Startup Page.
+
+
 ### Weather Setup (Optional)
 
 1. Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
