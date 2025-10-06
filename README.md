@@ -87,11 +87,10 @@ const linkCategories = ['Work', 'Social', 'Entertainment', 'Tools'];
 
 ## Features in Detail
 
-### Theme Toggle
-- **Sun icon** in dark mode (click to switch to light)
-- **Moon icon** in light mode (click to switch to dark)
+### Setting Menu (UPDATED)
+- Toggle Light to Dark Mode
+- Toggle 2 dimensional borders vs 3 dimensioinal borders
 - Located in top-right corner
-- Preferences saved in browser localStorage
 
 ### Weather Widget
 - Current temperature display
@@ -106,7 +105,6 @@ const linkCategories = ['Work', 'Social', 'Entertainment', 'Tools'];
 
 ### Quick Links
 - **Categorized organization** - Links grouped by category
-- **3D card effects** - Modern elevated design
 - **Equal-width columns** - Balanced layout
 - **Hover effects** - Visual feedback on interaction
 
