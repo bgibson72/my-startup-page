@@ -3,6 +3,11 @@
 A modern, customizable browser start page with dark/light themes, weather integration, and organized quick links.
 
 ![Start Page Screenshot](startpage.png)
+Dark Mode - 3D
+
+
+![Start Page Screenshot](startpage_light2d.jpg)
+Light Mode - 2D
 
 ## Features
 
